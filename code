@@ -1,0 +1,22 @@
+void traverse(Node *root, int d, map<int,vector<int>>&mp){
+    if(root==NULL) return;
+    mp[d].push_back(root->data);
+    traverse(root->left,d+1,mp);
+    traverse(root->right,d,mp);
+}
+
+vector<int> diagonal(Node *root)
+{
+   vector<int>ans;
+   if(!root){
+       return ans;
+   }
+   map<int,vector<int>>mp;
+   traverse(root,0,mp);
+   for(auto i:mp){
+       for(auto j:i.second){
+           ans.push_back(j);
+       }
+   }
+   return ans;
+}
